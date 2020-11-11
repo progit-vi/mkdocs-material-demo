@@ -95,7 +95,7 @@ jobs:
   # Publish Python package and Docker image
   publish:
     if: |
-      github.repository == 'squidfunk/mkdocs-material' &&
+      github.repository == 'wilson-research/mkdocs-material-demo' &&
       startsWith(github.ref, 'refs/tags')
     needs: build
     runs-on: ubuntu-latest

@@ -87,9 +87,9 @@ In order to integrate another JavaScript-based comment system provider, you can
 [extend the theme][9] and [override the `disqus` block][10]:
 
 ``` html
-{% disqus %}
+{% block disqus %}
   <!-- Add custom comment system integration here -->
-{% disqus %}
+{% endblock %}
 ```
 
   [8]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html#L325-L328
