@@ -20,12 +20,10 @@ jobs:
           python-version: 3.x
 
       - name: Install Python dependencies    
-        run: |
-        pip install .
-        pip install \
-          mkdocs-material \
-          mkdocs-awesome-pages-plugin \
-          mkdocs-redirects \
+        run: pip install
+          mkdocs-material
+          mkdocs-awesome-pages-plugin
+          mkdocs-redirects
           mkdocs-minify-plugin
 
       - name: Publish
