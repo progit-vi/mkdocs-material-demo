@@ -7,7 +7,7 @@ template: overrides/main.html
 As with any other service offered on the web, understanding how your project
 documentation is actually used can be an essential success factor. While
 Material for MkDocs natively integrates with [Google Analytics][1], [other
-analytics services][2] can be used, too.
+analytics providers][2] can be used, too.
 
   [1]: https://developers.google.com/analytics
   [2]: #other-analytics-providers
@@ -18,18 +18,29 @@ analytics services][2] can be used, too.
 
 [:octicons-file-code-24: Source][3] · :octicons-milestone-24: Default: _none_
 
-After heading over to your [Google Analytics][1] account to [create a new
-property][4] in order to obtain a unique tracking id of the form
-`UA-XXXXXXXX-X`, add it to `mkdocs.yml`:
+Material for MkDocs integrates with both, Google Analytics 4 and the now phasing
+out Universal Analytics (`UA-*`). Depending on the prefix of the property, add
+the following to `mkdocs.yml`:
 
-``` yaml
-google_analytics:
-  - UA-XXXXXXXX-X
-  - auto
-```
+=== "Google Analytics 4"
+
+    ``` yaml
+    extra:
+      analytics:
+        provider: google
+        property: G-XXXXXXXXXX
+    ```
+
+=== "Universal Analytics"
+
+    ``` yaml
+    extra:
+      analytics:
+        provider: google
+        property: UA-XXXXXXXX-X
+    ```
 
   [3]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/integrations/analytics.html
-  [4]: https://support.google.com/analytics/answer/1042508
 
 #### Site search tracking
 
@@ -42,6 +53,12 @@ search tracking:
 3. Go to the __view settings__ tab.
 4. Scroll down and enable __site search settings__
 5. Set the __query parameter__ to `q`.
+
+_Site search tracking is not supported with Google Analytics 4 due to the much
+more complicated manual setup. If you want to set up site search tracking
+yourself, [this tutorial][4] might be a good start._
+
+  [4]: https://www.analyticsmania.com/post/track-site-search-with-google-tag-manager-and-google-analytics/
 
 ## Customization
 
@@ -61,14 +78,14 @@ and [override the `analytics` block][6]:
 ```
 
   [5]: ../customization.md#extending-the-theme
-  [6]: ../customization.md#overriding-blocks
+  [6]: ../customization.md#overriding-blocks-recommended
 
 If you're using [instant loading][7], you may use the `location$` observable,
 which will emit the current `URL` to listen for navigation events and register
 a page view event with:
 
 ``` js
-app.location$.subscribe(function(url) {
+location$.subscribe(function(url) {
   /* Add custom page event tracking here */
 })
 ```
